@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Time Table</title>
+        <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            padding: 30px;
+        }
+
+        h2 {
+            text-align: center;
+            color: #333;
+        }
+
+        table {
+            width: 90%;
+            margin: 20px auto;
+            border-collapse: collapse;
+            background-color: white;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 12px 15px;
+            text-align: center;
+        }
+
+        th {
+            background-color: #4CAF50;
+            color: white;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        tr:hover {
+            background-color: #f1f1f1;
+        }
+    </style>
+    </head>
+    <body>
+        <center><h2>Class Time Table</h2></center>
+        <table border="1">
+            <tr>
+                <th>Day</th>
+                <th>Time Slot</th>
+                <th>Subject Name</th>
+                <th>Faculty Name</th>
+                <th>Class Room</th>
+            </tr>
+            {% for time_slot in time_table %}
+            <tr>
+                <td>{{ time_slot.day }}</td>
+                <td>{{ time_slot.start_time|slice:"5" }}-{{ time_slot.end_time|slice:"5" }}</td>
+                <td>{{ time_slot.subject }}</td>
+                <td>{{ time_slot.faculty_name }}</td>
+                <td>{{ time_slot.class_room }}</td>
+            </tr>
+            {% empty %}
+        <tr>
+            <td colspan="5">No records found</td>
+        </tr>
+        {% endfor %}
+        </table>
+    </body>
+</html>
